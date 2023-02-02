@@ -1,10 +1,9 @@
 <template>
   <div class="w-full max-w-sm mx-auto rounded-md shadow-2xl overflow-hidden">
-    <div class="flex items-end justify-end h-56 w-full bg-cover">
-      <!-- <div
+    <div
       class="flex items-end justify-end h-56 w-full bg-cover"
       :style="`background-image: url('${product.image}');`"
-    > -->
+    >
       <button
         class="p-2 rounded-full text-white mx-5 -mb-4 hover:bg-neutral-200 focus:outline-none focus:bg-neutral-200"
         data-testid="add-to-cart-button"
@@ -25,8 +24,8 @@
       </button>
     </div>
     <div class="px-5 py-3">
-      <!-- <h3 class="text-gray-700 uppercase">{{ product.title }}</h3>
-      <span class="text-gray-500 mt-2">${{ product.price }}</span> -->
+      <h3 class="text-gray-700 uppercase">{{ product.title }}</h3>
+      <span class="text-gray-500 mt-2">${{ product.price }}</span>
     </div>
   </div>
 </template>

@@ -11,7 +11,7 @@ export default {
       return faker.commerce.price()
     },
     image() {
-      return faker.image.food()
+      return faker.image.food(640, 480, 'cat', true)
     },
   }),
 }

@@ -1,9 +1,19 @@
 import { Server } from 'miragejs'
-import routes from './routes'
-
+import routes from '../routes'
+import factories from './factories'
+import models from './models'
+import seeds from '@/seeds'
 const config = (environment) => {
   const config = {
+    environment,
+    factories,
+    models,
     routes,
+    seeds,
+  }
+
+  if (process.env.NODE_ENV !== 'development' && process.env.USE_API) {
+    config.urlPrefix = 'http://localhost:5000'
   }
 
   return config

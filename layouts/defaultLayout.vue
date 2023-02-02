@@ -117,5 +117,21 @@ import ShoppingCart from '@/components/ShoppingCart'
 
 export default {
   components: { ShoppingCart },
+  data() {
+    return {
+      errorMessage: '',
+    }
+  },
+  computed: {
+    isCartOpen() {
+      return this.$cart.getState().open
+    },
+    products() {
+      return this.$cart.getState().items
+    },
+    hasError() {
+      return this.errorMessage !== ''
+    },
+  },
 }
 </script>

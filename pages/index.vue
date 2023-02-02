@@ -25,7 +25,38 @@ export default {
   data() {
     return {
       products: [],
+      errorMessage: '',
+      searchTerm: '',
     }
+  },
+  computed: {
+    list() {
+      if (this.searchTerm !== '') {
+        return this.products.filter(({ title }) => {
+          return title.includes(this.searchTerm)
+        })
+      }
+      return this.products
+    },
+    quantityLabel() {
+      const {
+        list: { length },
+      } = this
+
+      return length === 1 ? `${length} Product` : `${length} Products`
+    },
+  },
+  async created() {
+    try {
+      this.products = (await this.$axios.get('/api/products')).data.products
+    } catch (error) {
+      this.errorMessage = 'Problemas ao carregar a lista!'
+    }
+  },
+  methods: {
+    setSearchTerm({ term }) {
+      this.searchTerm = term
+    },
   },
 }
 </script>

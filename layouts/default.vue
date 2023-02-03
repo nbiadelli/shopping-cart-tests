@@ -28,12 +28,13 @@
           <div
             class="w-full text-gray-700 md:text-center text-2xl font-semibold"
           >
-            Brand
+            Food Shop
           </div>
           <div class="flex items-center justify-end w-full">
             <button
               data-testid="toggle-button"
               class="text-gray-600 focus:outline-none mx-4 sm:mx-0"
+              @click="toggleCart"
             >
               <svg
                 class="h-5 w-5"
@@ -66,45 +67,22 @@
             </div>
           </div>
         </div>
-        <nav class="sm:flex sm:justify-center sm:items-center mt-4">
-          <div class="flex flex-col sm:flex-row">
-            <a
-              class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-              href="#"
-              >Home</a
-            >
-            <a
-              class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-              href="#"
-              >Shop</a
-            >
-            <a
-              class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-              href="#"
-              >Categories</a
-            >
-            <a
-              class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-              href="#"
-              >Contact</a
-            >
-            <a
-              class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-              href="#"
-              >About</a
-            >
-          </div>
-        </nav>
       </div>
     </header>
-    <shopping-cart />
+    <cart
+      :products="products"
+      :is-open="isCartOpen"
+      @close="toggleCart"
+      @checkout="checkout"
+    />
+    <h2 v-if="hasError" data-testid="error-message">{{ errorMessage }}</h2>
     <nuxt />
     <footer class="bg-gray-200">
       <div
         class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
         <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
-          >Brand</a
+          >Food Shop</a
         >
         <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
       </div>
@@ -113,10 +91,10 @@
 </template>
 
 <script>
-import ShoppingCart from '@/components/ShoppingCart'
+import Cart from '../components/ShoppingCart.vue'
 
 export default {
-  components: { ShoppingCart },
+  components: { Cart },
   data() {
     return {
       errorMessage: '',
@@ -131,6 +109,25 @@ export default {
     },
     hasError() {
       return this.errorMessage !== ''
+    },
+  },
+  methods: {
+    async checkout({ email }) {
+      try {
+        const products = this.$cart.getState().items
+        this.$axios.setHeader('email', email)
+        await this.$axios.post('/api/order', { products })
+        this.$cart.clearProducts()
+      } catch (error) {
+        this.errorMessage = 'Fail to save order'
+      }
+    },
+    toggleCart() {
+      if (this.$cart.getState().open) {
+        this.$cart.close()
+      } else {
+        this.$cart.open()
+      }
     },
   },
 }

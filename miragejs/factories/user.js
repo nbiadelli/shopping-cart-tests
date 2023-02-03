@@ -12,10 +12,10 @@ import { randomNumber } from './utils'
 export default {
   user: Factory.extend({
     name() {
-      return faker.helpers.fake('maria')
+      return faker.name.firstName()
     },
     mobile() {
-      return faker.helpers.fake('5555555')
+      return faker.phone.number('+48 91 ### ## ##')
     },
     afterCreate(user, server) {
       const messages = server.createList('message', randomNumber(10), { user })

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-sm mx-auto rounded-md shadow-2xl overflow-hidden">
+  <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
     <div
       class="flex items-end justify-end h-56 w-full bg-cover"
       :style="`background-image: url('${product.image}');`"
@@ -7,6 +7,7 @@
       <button
         class="p-2 rounded-full text-white mx-5 -mb-4 hover:bg-neutral-200 focus:outline-none focus:bg-neutral-200"
         data-testid="add-to-cart-button"
+        @click="addToCart"
       >
         <svg
           class="h-5 w-5 stroke-cyan-500"

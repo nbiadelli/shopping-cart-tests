@@ -1,11 +1,13 @@
 <template>
   <main class="my-8">
-    <product-search />
-    <div class="container mx-auto px-6">
+    <product-search @doSearch="setSearchTerm" />
+    <div v-if="errorMessage === ''" class="container mx-auto px-6">
+      <h3 class="text-gray-700 text-2xl font-medium">Food For You</h3>
       <span
         data-testid="total-quantity-label"
         class="mt-3 text-sm text-gray-500"
-      ></span>
+        >{{ quantityLabel }}</span
+      >
       <div
         class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
       >
@@ -17,7 +19,7 @@
         />
       </div>
     </div>
-    <h3 class="text-center text-2xl"></h3>
+    <h3 v-else class="text-center text-2xl">{{ errorMessage }}</h3>
   </main>
 </template>
 

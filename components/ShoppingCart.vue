@@ -1,14 +1,22 @@
 <template>
   <div
     class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
+    :class="{ hidden: isOpen }"
     data-testid="shopping-cart"
   >
     <div class="flex items-center justify-between">
       <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
-      <button data-testid="clear-cart-button">clear cart</button>
+      <button
+        v-if="hasProducts"
+        data-testid="clear-cart-button"
+        @click="$cart.clearProducts()"
+      >
+        clear cart
+      </button>
       <button
         data-testid="close-button"
         class="text-gray-600 focus:outline-none"
+        @click="close"
       >
         <svg
           class="h-5 w-5"
@@ -24,10 +32,15 @@
       </button>
     </div>
     <hr class="my-3" />
-    <cart-item />
-    <h3>Cart is empty</h3>
-    <form data-testid="checkout-form">
-      <div class="mt-4">
+    <cart-item
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      data-testid="cart-item"
+    />
+    <h3 v-if="!hasProducts">Cart is empty</h3>
+    <form data-testid="checkout-form" @submit.prevent="checkout">
+      <div v-if="hasProducts" class="mt-4">
         <hr />
         <label
           class="block text-gray-700 mt-2 text-sm font-bold mb-2"
@@ -63,14 +76,44 @@
     </form>
   </div>
 </template>
+
 <script>
 import CartItem from '@/components/CartItem'
-
 export default {
   components: { CartItem },
-
+  props: {
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
+    products: {
+      type: Array,
+      default: () => {
+        /* istanbul ignore next */
+        return []
+      },
+    },
+  },
   data() {
-    return {}
+    return {
+      email: '',
+    }
+  },
+  computed: {
+    hasProducts() {
+      return this.products.length > 0
+    },
+  },
+  methods: {
+    close() {
+      this.$emit('close')
+    },
+    checkout() {
+      /* istanbul ignore else */
+      if (this.email) {
+        this.$emit('checkout', { email: this.email })
+      }
+    },
   },
 }
 </script>

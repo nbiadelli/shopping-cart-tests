@@ -3,7 +3,7 @@ import Vue from 'vue'
 export default {
   install: (Vue) => {
     /* istanbul ignore next */
-    Vue.prototype.$cart = new ShoppingCartMenagers()
+    Vue.prototype.$cart = new CartManager()
   },
 }
 
@@ -12,7 +12,7 @@ const initialState = {
   items: [],
 }
 
-export class ShoppingCartMenagers {
+export class CartManager {
   state
 
   constructor() {

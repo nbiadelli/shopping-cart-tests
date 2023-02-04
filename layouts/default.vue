@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import Cart from '../components/ShoppingCart.vue'
+import Cart from '@/components/shoppingCart/ShoppingCart'
 
 export default {
   components: { Cart },

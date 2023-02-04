@@ -1,7 +1,7 @@
 <template>
   <div
     class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
-    :class="{ hidden: isOpen }"
+    :class="{ hidden: !isOpen }"
     data-testid="shopping-cart"
   >
     <div class="flex items-center justify-between">
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import CartItem from '@/components/CartItem'
+import CartItem from '../cartItem/CartItem.vue'
 export default {
   components: { CartItem },
   props: {

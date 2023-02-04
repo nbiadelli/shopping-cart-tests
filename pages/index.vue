@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard'
-import ProductSearch from '@/components/ProductSearch'
+import ProductCard from '@/components/productCard/ProductCard'
+import ProductSearch from '@/components/productSearch/ProductSearch'
 
 export default {
   components: { ProductCard, ProductSearch },

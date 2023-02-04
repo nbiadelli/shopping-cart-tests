@@ -13,7 +13,9 @@
     "lint": "npm run lint:js && npm run lint:prettier",
     "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint --cache",
@@ -22,6 +24,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
+    "@types/jest": "^29.4.0",
     "core-js": "^3.25.3",
     "faker": "^6.6.6",
     "nuxt": "^2.15.8",

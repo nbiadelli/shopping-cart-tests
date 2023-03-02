@@ -1,7 +1,8 @@
 export default {
+  mode: process.env.NODE_ENV === 'development' ? 'spa' : 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'watch-store',
+    title: 'shopping-cart',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -37,7 +38,7 @@ export default {
   ],
 
   env: {
-    USE_API: !!process.env.USE_API,
+    USE_API: process.env.USE_API,
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

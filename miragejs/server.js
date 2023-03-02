@@ -2,7 +2,7 @@ import { Server } from 'miragejs'
 import routes from '../routes'
 import factories from './factories'
 import models from './models'
-import seeds from '@/seeds'
+import seeds from './seeds'
 const config = (environment) => {
   const config = {
     environment,

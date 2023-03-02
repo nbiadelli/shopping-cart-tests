@@ -1,5 +1,3 @@
-# watch-store
-
 ## Build Setup
 
 ```bash
@@ -15,6 +13,19 @@ $ npm run start
 
 # generate static project
 $ npm run generate
+
+# USE_API=https://fakestoreapi.com/products
+
+# Run application together with API
+$ npm run dev:api | echo $USE_API
+
+# test the application before running the tests *******
+
+# unit tests
+$ npm run test:watch
+
+# e2e tests
+$ npm run test:e2e
 ```
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).

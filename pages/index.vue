@@ -2,7 +2,7 @@
   <main class="my-8">
     <product-search @doSearch="setSearchTerm" />
     <div v-if="errorMessage === ''" class="container mx-auto px-6">
-      <h3 class="text-gray-700 text-2xl font-medium">Food For You</h3>
+      <h3 class="text-2xl font-medium text-gray-500">Food For You</h3>
       <span
         data-testid="total-quantity-label"
         class="mt-3 text-sm text-gray-500"
@@ -57,7 +57,7 @@ export default {
     try {
       this.products = (await this.$axios.get('/api/products')).data.products
     } catch (error) {
-      this.errorMessage = 'Problemas ao carregar a lista!'
+      this.errorMessage = 'Problems loading the list!!'
     }
   },
   methods: {

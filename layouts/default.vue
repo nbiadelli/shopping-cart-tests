@@ -26,14 +26,14 @@
             <span class="mx-1 text-sm">NY</span>
           </div>
           <div
-            class="w-full text-gray-700 md:text-center text-2xl font-semibold"
+            class="w-full text-gray-700 md:text-center text-2xl font-semibold stroke-cyan-500 text-cyan-500"
           >
             Food Shop
           </div>
           <div class="flex items-center justify-end w-full">
             <button
               data-testid="toggle-button"
-              class="text-gray-600 focus:outline-none mx-4 sm:mx-0"
+              class="text-gray-600 focus:outline-none"
               @click="toggleCart"
             >
               <svg
@@ -50,21 +50,11 @@
                 ></path>
               </svg>
             </button>
-
-            <div class="flex sm:hidden">
-              <button
-                type="button"
-                class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
-                aria-label="toggle menu"
-              >
-                <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
-                  <path
-                    fill-rule="evenodd"
-                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                  ></path>
-                </svg>
-              </button>
-            </div>
+            <span
+              v-if="products.length > 0"
+              class="text-gray-600 focus:outline-none text-xs text-cyan-500"
+              >{{ products.length }}</span
+            >
           </div>
         </div>
       </div>
@@ -75,16 +65,22 @@
       @close="toggleCart"
       @checkout="checkout"
     />
-    <h2 v-if="hasError" data-testid="error-message">{{ errorMessage }}</h2>
+    <h2
+      v-if="hasError"
+      class="text-red-700 leading-10 Class Properties text-left text-align: left; text-center"
+      data-testid="error-message"
+    >
+      {{ errorMessage }}
+    </h2>
     <nuxt />
     <footer class="bg-gray-200">
       <div
         class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
-        <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
-          >Food Shop</a
-        >
-        <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
+        <a href="#" class="text-xl font-bold hover:text-gray-400 text-cyan-500"
+          >Food Shop
+        </a>
+        <p class="py-2 text-gray-400 sm:py-0">All rights reserved</p>
       </div>
     </footer>
   </div>

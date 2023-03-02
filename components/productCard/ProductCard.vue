@@ -5,7 +5,7 @@
       :style="`background-image: url('${product.image}');`"
     >
       <button
-        class="p-2 rounded-full text-white mx-5 -mb-4 hover:bg-neutral-200 focus:outline-none focus:bg-neutral-200"
+        class="p-2 rounded-full mx-5 -mb-4 bg-neutral-100 hover:bg-gray-300 focus:bg-gray-300"
         data-testid="add-to-cart-button"
         @click="addToCart"
       >
